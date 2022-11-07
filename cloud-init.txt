@@ -19,7 +19,7 @@ write_files:
           proxy_cache_bypass $http_upgrade;
         }
       }
-  - owner: azureuser:azureuser
+  - owner: www-data:www-data
     path: /etc/systemd/system/app.service
     content: |
       [Unit]
@@ -47,15 +47,5 @@ runcmd:
   # clone GitHub Repo into myapp directory
   - cd /home/azureuser
   - git clone "https://github.com/yemiwebby/dotnet-vm-app" azureapp
-  - cd /home/azureuser/azureapp
-  - dotnet restore
-  - dotnet build --configuration Release 
-  - dotnet publish --configuration Release --output WebAPIFolder
-
-  # Enable App service
-  - sudo systemctl enable app.service
-  - sudo systemctl start app.service
-  
   # restart NGINX
-  - service nginx restart
-  # - sudo systemctl reload nginx.service
+  - sudo systemctl reload nginx.service
