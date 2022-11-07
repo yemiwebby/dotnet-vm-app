@@ -31,7 +31,7 @@ write_files:
       Restart=always
       RestartSec=10
       SyslogIdentifier=azureAPI
-      User=www-data
+      User=azureuser
       Environment=ASPNETCORE_ENVIRONMENT=Production
       Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
